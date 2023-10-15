@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Illuminati.Wpf", "Illuminati.Wpf\Illuminati.Wpf.csproj", "{B482C105-7F23-4A2F-AABA-DC631171B4C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Illuminati.Core", "Illuminati.Core\Illuminati.Core.csproj", "{6713BDAB-B0A9-462F-8DBB-004BD90CBF96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B482C105-7F23-4A2F-AABA-DC631171B4C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B482C105-7F23-4A2F-AABA-DC631171B4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B482C105-7F23-4A2F-AABA-DC631171B4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B482C105-7F23-4A2F-AABA-DC631171B4C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6713BDAB-B0A9-462F-8DBB-004BD90CBF96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6713BDAB-B0A9-462F-8DBB-004BD90CBF96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6713BDAB-B0A9-462F-8DBB-004BD90CBF96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6713BDAB-B0A9-462F-8DBB-004BD90CBF96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {671DA164-0846-47FE-B0C0-27FDB038437E}
+	EndGlobalSection
+EndGlobal

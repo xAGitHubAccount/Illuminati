@@ -1,0 +1,66 @@
+﻿<views:MvxWpfView 
+    xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+    xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Binding;assembly=MvvmCross.Platforms.Wpf"
+    x:Class="Illuminati.Wpf.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Illuminati.Wpf.Views" 
+    x:Name="main"
+    xmlns:viewmodels="clr-namespace:Illuminati.Core.ViewModels;assembly=Illuminati.Core" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+    mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="920">
+    <Grid>
+        <StackPanel Width="120" Panel.ZIndex="1">
+            <ComboBox x:Name="SPlayers" ItemsSource="{Binding Players}" SelectedIndex="{Binding SelectedPlayerIndex}" SelectedItem="{Binding PlayerView}"/>
+        </StackPanel>
+        <TextBlock Height ="20" Text="{Binding ActionCount, StringFormat='Actions left: {0}'}" Panel.ZIndex="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20,6,20,0" />
+
+        <StackPanel  Width="120" Panel.ZIndex="1" HorizontalAlignment="Right" Margin="0,30,0,302" Background="Transparent">
+            <Button x:Name="AttacktoControl" IsEnabled="{Binding ButtonEnabled}" Content="Attack to Control" Width="100" Height="20" mvx:Bi.nd="Command AttacktoControlCommand"/>
+            <Button x:Name="AttacktoDestroy" IsEnabled="{Binding ButtonEnabled}" Content="Attack to Destroy" Width="100" Height="20" mvx:Bi.nd="Command AttacktoDestroyCommand"/>
+            <Button x:Name="AttacktoNeutralize" IsEnabled="{Binding ButtonEnabled}" Content="Attack to Neutralize" Width="100" Height="20" mvx:Bi.nd="Command AttacktoNeutralizeCommand"/>
+            <Button x:Name="MoveGroup" IsEnabled="{Binding ButtonEnabled}" Content="Move Group" Width="100" Height="20" mvx:Bi.nd="Command MoveGroupCommand"/>
+            <Button x:Name="TransferMoney" IsEnabled="{Binding ButtonEnabled}" Content="Transfer Money" Width="100" Height="20" mvx:Bi.nd="Command TransferMoneyCommand"/>
+            <Button x:Name="DropGroup" Content="Drop Group" Width="100" Height="20" mvx:Bi.nd="Command DropGroupCommand"/>
+            <!---<Button x:Name="Add" Content="Add Pic" Width="100" Height="20" mvx:Bi.nd="Command AddSelectedCardCommand"/>
+            <Button x:Name="Delete" Content="Delete Pic" Width="100" Height="20" mvx:Bi.nd="Command DeleteSelectedCardCommand"/>
+            <Button x:Name="OnOff" Content="On Off" Width="100" Height="20" mvx:Bi.nd="Command OnOffCommand"/>
+            <Button x:Name="ButtonOff" Content="Button Off" Width="100" Height="20" mvx:Bi.nd="Command ButtonOffCommand"/>-->
+            <Button x:Name="EndTurn" Content="End Turn" Width="100" Height="20" mvx:Bi.nd="Command EndTurnCommand"/>
+            <Grid Visibility="{Binding SliderEnabled}"  HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Background="Gray" Height="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250*"/>
+                    <ColumnDefinition Width="250*"/>
+                </Grid.ColumnDefinitions>
+                <Slider Name="R" 
+                Width="200" Orientation="Horizontal"
+                 Minimum="0" Maximum="{Binding CardValue}" 
+                TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Center" Value="{Binding SliderValue}"/>
+                <TextBlock Text="{Binding ElementName=R, Path=Value}" HorizontalAlignment="Right" Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+
+        <Grid Visibility="{Binding SelectionEnabled}"  HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Background="Gray" Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250*"/>
+                <ColumnDefinition Width="250*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="SPlayer" ItemsSource="{Binding SelectionPlayers}" SelectedItem="{Binding SelectionPlay}" SelectedIndex="0"/>
+        </Grid>
+        
+        <ListBox Width="460" Height="100" Background="Gray"  BorderBrush="Black"  ItemsSource="{Binding Messages}" HorizontalAlignment="Left" Panel.ZIndex="1" VerticalAlignment="Bottom"/>
+
+        <UserControl Name="PlayerViews" Content="{Binding PlayerView}">
+            <UserControl.Resources>
+                <DataTemplate DataType="{x:Type viewmodels:Player1ViewModel}">
+                    <local:Player1View/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewmodels:UncontrolledViewModel}">
+                    <local:UncontrolledView/>
+                </DataTemplate>
+            </UserControl.Resources>
+        </UserControl>
+    </Grid>
+</views:MvxWpfView>

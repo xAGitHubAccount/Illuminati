@@ -1,0 +1,12 @@
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\bin\Debug\Illuminati.Core.dll
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\bin\Debug\Illuminati.Core.pdb
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\bin\Debug\MvvmCross.dll
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\bin\Debug\MvvmCross.pdb
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\bin\Debug\MvvmCross.xml
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\obj\Debug\Illuminati.Core.csproj.AssemblyReference.cache
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\obj\Debug\Illuminati.Core.csproj.CoreCompileInputs.cache
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\obj\Debug\Illuminati.Core.csproj.CopyComplete
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\obj\Debug\Illuminati.Core.dll
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Core\obj\Debug\Illuminati.Core.pdb

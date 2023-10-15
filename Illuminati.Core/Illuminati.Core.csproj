@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6713BDAB-B0A9-462F-8DBB-004BD90CBF96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Illuminati.Core</RootNamespace>
+    <AssemblyName>Illuminati.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.5.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross, Version=8.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.8.0.2\lib\net461\MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Console, Version=4.0.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.1\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="Models\Card\Arrow.cs" />
+    <Compile Include="Models\Card\Card.cs" />
+    <Compile Include="Models\Card\Alignments.cs" />
+    <Compile Include="Models\Card\CardType.cs" />
+    <Compile Include="Models\Card\Deck.cs" />
+    <Compile Include="Models\Card\Direction.cs" />
+    <Compile Include="Models\Card\GroupCard\Blank.cs" />
+    <Compile Include="Models\Card\GroupCard\Airlines.cs" />
+    <Compile Include="Models\Card\GroupCard\AlienAbductors.cs" />
+    <Compile Include="Models\Card\GroupCard\AmericanAutoduelAssociation.cs" />
+    <Compile Include="Models\Card\GroupCard\Antifa.cs" />
+    <Compile Include="Models\Card\GroupCard\AntiNuclearActivists.cs" />
+    <Compile Include="Models\Card\GroupCard\AntiwarActivists.cs" />
+    <Compile Include="Models\Card\GroupCard\ArmsSmugglers.cs" />
+    <Compile Include="Models\Card\GroupCard\BigMedia.cs" />
+    <Compile Include="Models\Card\GroupCard\GroupCard.cs" />
+    <Compile Include="Models\Card\IlluminatiCard\IlluminatiCard.cs" />
+    <Compile Include="Models\Card\IlluminatiCard\TheBavarianIlluminati.cs" />
+    <Compile Include="Models\Card\IlluminatiCard\TheBermudaTriangle.cs" />
+    <Compile Include="Models\Card\IlluminatiCard\TheDiscordianSociety.cs" />
+    <Compile Include="Models\Card\IlluminatiCard\TheGnomesOfZurich.cs" />
+    <Compile Include="Models\Card\IlluminatiCard\TheNetwork.cs" />
+    <Compile Include="Models\Card\IlluminatiCard\TheServantsOfCthulhu.cs" />
+    <Compile Include="Models\Card\IlluminatiCard\TheSocietyOfAssassins.cs" />
+    <Compile Include="Models\Card\IlluminatiCard\TheUFOs.cs" />
+    <Compile Include="Models\Card\SpecialCard\SpecialCard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="ViewModels\GroupViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Player1ViewModel.cs" />
+    <Compile Include="ViewModels\Player2ViewModel.cs" />
+    <Compile Include="ViewModels\UncontrolledViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Blank.png" />
+    <Content Include="Images\Groups\Airlines.png" />
+    <Content Include="Images\Groups\AlienAbductors.png" />
+    <Content Include="Images\Groups\AmericanAutoduelAssociation.png" />
+    <Content Include="Images\Groups\Anti-NuclearActivists.png" />
+    <Content Include="Images\Groups\Antifa.png" />
+    <Content Include="Images\Groups\AntiwarActivists.png" />
+    <Content Include="Images\Groups\ArmsSmugglers.png" />
+    <Content Include="Images\Groups\BigMedia.png" />
+    <Content Include="Images\illuminati.png" />
+    <Content Include="Images\illuminati_eye.png" />
+    <Content Include="Images\illuminati_icon.png" />
+    <Content Include="Images\lucky7_icon.png" />
+    <Content Include="Images\megaBuck.png" />
+    <Content Include="Images\Specials\Assassination.png" />
+    <Content Include="Images\Specials\Bribery.png" />
+    <Content Include="Images\Specials\ComputerEspionage.png" />
+    <Content Include="Images\Specials\DeepAgent.png" />
+    <Content Include="Images\Specials\Interference1.png" />
+    <Content Include="Images\Specials\Interference2.png" />
+    <Content Include="Images\Specials\MarketManipulation.png" />
+    <Content Include="Images\Specials\MediaBlitz.png" />
+    <Content Include="Images\TheBavarianIlluminati.png" />
+    <Content Include="Images\TheBermudaTriangle.png" />
+    <Content Include="Images\TheDiscordianSociety.png" />
+    <Content Include="Images\TheGnomesOfZurich.png" />
+    <Content Include="Images\TheNetwork.png" />
+    <Content Include="Images\TheServantsOfCthulhu.png" />
+    <Content Include="Images\TheSocietyOfAssassins.png" />
+    <Content Include="Images\TheUFOs.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
