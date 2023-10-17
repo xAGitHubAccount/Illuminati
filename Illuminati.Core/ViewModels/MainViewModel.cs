@@ -238,29 +238,91 @@ namespace Illuminati.Core.ViewModels
             ButtonEnabled = false;
             SendMessage("Select group to attack with");
             int Ap = SelectedPlayerIndex;
+            Players[SelectedPlayerIndex].Selection = -1;
             await Task.Run(() => Players[SelectedPlayerIndex].Test());
 
             if (Players[SelectedPlayerIndex].Selection == 1)
             {
-                SendMessage("Select Player to Attack");
-                await Task.Run(() => Players[SelectedPlayerIndex].Test());
+                var temp2 = Players[SelectedPlayerIndex].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex];
+                Players[SelectedPlayerIndex].Selection = -1;
 
+                for (int x = 0; x < Players.Count - 2; x++)
+                {
+                    if (Players[x].Controlling == true)
+                    {
+                        SelectionPlayers.Add(Players[x]);
+                    }
+                }
+
+                SelectionEnabled = "Visible";
+
+                SendMessage("Select Player to attack");
+                await Task.Run(() => Players[SelectedPlayerIndex].Test());
                 if (Players[SelectedPlayerIndex].Selection == 1)
                 {
+                    Players[SelectedPlayerIndex].Selection = -1;
+
+                    SelectionEnabled = "Collapsed";
+                    PlayerView = SelectionPlay;
+                    SelectedPlayerIndex = Players.IndexOf(SelectionPlay);
+
                     SendMessage("Select group to attack");
                     await Task.Run(() => Players[SelectedPlayerIndex].Test());
+
                     if (Players[SelectedPlayerIndex].Selection == 1)
                     {
-                        ActionCount--;
-                        var temp = Players[SelectedPlayerIndex].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex];
-                        SendMessage("Attack successful");
-                        Players[SelectedPlayerIndex].BoardGrid.Remove(temp);
+                        Players[SelectedPlayerIndex].Selection = -1;
 
-                        PlayerView = Players[Ap];
-                        SelectedPlayerIndex = Players.Count - 1;
-                        Players[SelectedPlayerIndex].BoardGrid.Add(temp);
-                        SelectedPlayerIndex = Ap;
+                        var temp = Players[SelectedPlayerIndex].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex];
+
+                        CardValue = Players[Ap].DisplayCard;
+                        sliderOn();
+                        SendMessage("How much money to transfer to Power?");
+                        await Task.Run(() => Players[SelectedPlayerIndex].Test());
+                        if (Players[SelectedPlayerIndex].Selection == 1)
+                        {
+                            Players[SelectedPlayerIndex].Selection = -1;
+                            sliderOff();
+                            int sValue = SliderValue;
+
+                            PlayerView = Players[Ap];
+                            SelectedPlayerIndex = Ap;
+
+                            int roll = rnd.Next(13);
+                            if (roll == 11 || roll == 12)
+                            {
+                                SendMessage("Attack unsuccessful");
+                            }
+                            else if (temp2.GetPower() + sValue - temp.GetPower() >= roll)
+                            {
+                                SendMessage("Attack successful");
+                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
+                                Players[SelectedPlayerIndex].BoardGrid.Remove(temp);
+                                uncontrolled.BoardGrid.Add(temp);
+                                //Players[SelectedPlayerIndex].OnOffTest();
+                                //SendMessage("Select to place group");
+                                //await Task.Run(() => Players[SelectedPlayerIndex].Test());
+
+                                //if (Players[SelectedPlayerIndex].Selection == 1)
+                                //{
+                                //    Players[SelectedPlayerIndex].Selection = -1;
+                                //    Players[SelectedPlayerIndex].AddSelectCard(temp);
+                                //    Players[SelectedPlayerIndex].OnOffReverse();
+                                //    ActionCount--;
+                                //}
+
+                                //else
+                                //{
+                                //    Players[SelectedPlayerIndex].OnOffReverse();
+                                //}
+                            }
+                            else
+                            {
+                                SendMessage("Attack unsuccessful");
+                            }
+                        }
                     }
+
                 }
             }
 
@@ -334,7 +396,7 @@ namespace Illuminati.Core.ViewModels
                             {
                                 SendMessage("Attack successful");
                                 Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
-                                uncontrolled.BoardGrid.Remove(temp);
+                                Players[SelectedPlayerIndex].BoardGrid.Remove(temp);
                                 Players[SelectedPlayerIndex].OnOffTest();
                                 SendMessage("Select to place group");
                                 await Task.Run(() => Players[SelectedPlayerIndex].Test());
