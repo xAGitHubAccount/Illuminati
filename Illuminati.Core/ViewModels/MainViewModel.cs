@@ -209,27 +209,99 @@ namespace Illuminati.Core.ViewModels
 
         public async void AttacktoDestroy()
         {
+            ButtonEnabled = false;
             SendMessage("Select group to attack with");
             int Ap = SelectedPlayerIndex;
+            Players[SelectedPlayerIndex].Selection = -1;
             await Task.Run(() => Players[SelectedPlayerIndex].Test());
 
             if (Players[SelectedPlayerIndex].Selection == 1)
             {
-                PlayerView = Players[Players.Count - 1];
-                SelectedPlayerIndex = Players.Count - 1;
+                var temp2 = Players[SelectedPlayerIndex].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex];
+                Players[SelectedPlayerIndex].Selection = -1;
 
-                SendMessage("Select group to attack");
+                for (int x = 0; x < Players.Count - 2; x++)
+                {
+                    if (Players[x].Controlling == true)
+                    {
+                        SelectionPlayers.Add(Players[x]);
+                    }
+                }
+
+                SelectionEnabled = "Visible";
+
+                SendMessage("Select Player to attack");
                 await Task.Run(() => Players[SelectedPlayerIndex].Test());
-
                 if (Players[SelectedPlayerIndex].Selection == 1)
                 {
-                    ActionCount--;
-                    SendMessage("Attack successful");
-                    Players[SelectedPlayerIndex].DeleteSelectedCard();
+                    Players[SelectedPlayerIndex].Selection = -1;
 
-                    PlayerView = Players[Ap];
-                    SelectedPlayerIndex = Ap;
+                    SelectionEnabled = "Collapsed";
+                    PlayerView = SelectionPlay;
+                    SelectedPlayerIndex = Players.IndexOf(SelectionPlay);
+
+                    SendMessage("Select group to attack");
+                    await Task.Run(() => Players[SelectedPlayerIndex].Test());
+
+                    if (Players[SelectedPlayerIndex].Selection == 1)
+                    {
+                        Players[SelectedPlayerIndex].Selection = -1;
+
+                        var temp = Players[SelectedPlayerIndex].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex];
+
+                        CardValue = Players[Ap].DisplayCard;
+                        sliderOn();
+                        SendMessage("How much money to transfer to Power?");
+                        await Task.Run(() => Players[SelectedPlayerIndex].Test());
+                        if (Players[SelectedPlayerIndex].Selection == 1)
+                        {
+                            Players[SelectedPlayerIndex].Selection = -1;
+                            sliderOff();
+                            int sValue = SliderValue;
+
+                            PlayerView = Players[Ap];
+                            SelectedPlayerIndex = Ap;
+
+                            int roll = rnd.Next(13);
+                            if (roll == 11 || roll == 12)
+                            {
+                                SendMessage("Attack unsuccessful");
+                            }
+                            else if (temp2.GetPower() + sValue - temp.GetPower() >= roll)
+                            {
+                                SendMessage("Attack successful");
+                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
+                                Players[SelectedPlayerIndex].BoardGrid.Remove(temp);
+                                //Players[SelectedPlayerIndex].OnOffTest();
+                                //SendMessage("Select to place group");
+                                //await Task.Run(() => Players[SelectedPlayerIndex].Test());
+
+                                //if (Players[SelectedPlayerIndex].Selection == 1)
+                                //{
+                                //    Players[SelectedPlayerIndex].Selection = -1;
+                                //    Players[SelectedPlayerIndex].AddSelectCard(temp);
+                                //    Players[SelectedPlayerIndex].OnOffReverse();
+                                //    ActionCount--;
+                                //}
+
+                                //else
+                                //{
+                                //    Players[SelectedPlayerIndex].OnOffReverse();
+                                //}
+                            }
+                            else
+                            {
+                                SendMessage("Attack unsuccessful");
+                            }
+                        }
+                    }
+
                 }
+            }
+
+            if (actionCount != 0)
+            {
+                ButtonEnabled = true;
             }
         }
 
@@ -427,6 +499,38 @@ namespace Illuminati.Core.ViewModels
             if (actionCount != 0)
             {
                 ButtonEnabled = true;
+            }
+        }
+
+        public async void MoveGroup()
+        {
+            SendMessage("Select group to move");
+            Players[SelectedPlayerIndex].OnOffIlluminati();
+            await Task.Run(() => Players[SelectedPlayerIndex].Test());
+
+            if (Players[SelectedPlayerIndex].Selection == 1)
+            {
+                Players[SelectedPlayerIndex].Selection = -1;
+
+                var temp = Players[SelectedPlayerIndex].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex];
+                Players[SelectedPlayerIndex].DeleteSelectedCard();
+
+                SendMessage("Select to place group");
+                if (Players[SelectedPlayerIndex].Selection == 1)
+                {
+                    Players[SelectedPlayerIndex].Selection = -1;
+
+                    Players[SelectedPlayerIndex].AddSelectCard(temp);
+                    Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
+                }
+                else
+                {
+                    Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
+                }
+            }
+            else
+            {
+                Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
             }
         }
 
