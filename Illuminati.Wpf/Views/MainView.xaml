@@ -29,18 +29,18 @@
             <Button x:Name="OnOff" Content="On Off" Width="100" Height="20" mvx:Bi.nd="Command OnOffCommand"/>
             <Button x:Name="ButtonOff" Content="Button Off" Width="100" Height="20" mvx:Bi.nd="Command ButtonOffCommand"/>-->
             <Button x:Name="EndTurn" Content="End Turn" Width="100" Height="20" mvx:Bi.nd="Command EndTurnCommand"/>
-            <Grid Visibility="{Binding SliderEnabled}"  HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Background="Gray" Height="50">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250*"/>
-                    <ColumnDefinition Width="250*"/>
-                </Grid.ColumnDefinitions>
-                <Slider Name="R" 
-                Width="200" Orientation="Horizontal"
-                 Minimum="0" Maximum="{Binding CardValue}" 
-                TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Center" Value="{Binding SliderValue}"/>
-                <TextBlock Text="{Binding ElementName=R, Path=Value}" HorizontalAlignment="Right" Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center"/>
-            </Grid>
         </StackPanel>
+
+        <Grid Visibility="{Binding SliderEnabled}"  HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Background="Gray" Height="50" Margin="326,445,326,105" Width="268">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250*"/>
+                <ColumnDefinition Width="250*"/>
+            </Grid.ColumnDefinitions>
+            <Slider Name="R" Orientation="Horizontal"
+                 Minimum="0" Maximum="{Binding CardValue}" 
+                TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" VerticalAlignment="Center" Value="{Binding SliderValue}" Grid.ColumnSpan="2" Margin="0,13,28,13"/>
+            <TextBlock Text="{Binding ElementName=R, Path=Value}" HorizontalAlignment="Left" Grid.Column="1" Margin="128,17,0,17" VerticalAlignment="Center"/>
+        </Grid>
 
         <Grid Visibility="{Binding SelectionEnabled}"  HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Background="Gray" Height="50">
             <Grid.ColumnDefinitions>
@@ -49,7 +49,7 @@
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="SPlayer" ItemsSource="{Binding SelectionPlayers}" SelectedItem="{Binding SelectionPlay}" SelectedIndex="0"/>
         </Grid>
-        
+
         <ListBox Width="460" Height="100" Background="Gray"  BorderBrush="Black"  ItemsSource="{Binding Messages}" HorizontalAlignment="Left" Panel.ZIndex="1" VerticalAlignment="Bottom"/>
 
         <UserControl Name="PlayerViews" Content="{Binding PlayerView}">

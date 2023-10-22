@@ -266,6 +266,8 @@ namespace Illuminati.Core.ViewModels
                             if (roll == 11 || roll == 12)
                             {
                                 SendMessage("Attack unsuccessful");
+                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
+                                ActionCount--;
                             }
                             else if (temp2.GetPower() + sValue - temp.GetPower() >= roll)
                             {
@@ -298,6 +300,8 @@ namespace Illuminati.Core.ViewModels
 
                 }
             }
+
+            SelectionPlayers.Clear();
 
             if (actionCount != 0)
             {
@@ -364,6 +368,8 @@ namespace Illuminati.Core.ViewModels
                             if (roll == 11 || roll == 12)
                             {
                                 SendMessage("Attack unsuccessful");
+                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
+                                ActionCount--;
                             }
                             else if (temp2.GetPower() + sValue - temp.GetPower() >= roll)
                             {
@@ -397,6 +403,8 @@ namespace Illuminati.Core.ViewModels
 
                 }
             }
+
+            SelectionPlayers.Clear();
 
             if (actionCount != 0)
             {
@@ -463,6 +471,8 @@ namespace Illuminati.Core.ViewModels
                             if (roll == 11 || roll == 12)
                             {
                                 SendMessage("Attack unsuccessful");
+                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
+                                ActionCount--;
                             }
                             else if (temp2.GetPower() + sValue - temp.GetPower() >= roll)
                             {
@@ -495,6 +505,8 @@ namespace Illuminati.Core.ViewModels
                     
                 }
             }
+
+            SelectionPlayers.Clear();
 
             if (actionCount != 0)
             {
