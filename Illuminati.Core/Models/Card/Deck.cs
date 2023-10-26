@@ -45,6 +45,11 @@ namespace Illuminati.Core.Models.Card
             return tem;
         }
 
+        public bool IsDeckNotEmpty()
+        {
+            return deck.Any();
+        }
+
         public void ShuffleDeck()
         {
             Random random = new Random();

@@ -194,7 +194,10 @@ namespace Illuminati.Core.ViewModels
         {
             ActionCount = 2;
             Players[SelectedPlayerIndex].CollectAllIncome();
-            uncontrolled.BoardGrid.Add(d.DrawCard());
+            if (d.IsDeckNotEmpty())
+            {
+                uncontrolled.BoardGrid.Add(d.DrawCard());
+            }
         }
 
         public void ButtonOffTest()
