@@ -40,10 +40,8 @@ C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Illuminati.Wpf.c
 C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Illuminati.Wpf.csproj.CopyComplete
 C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Illuminati.Wpf.exe
 C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Illuminati.Wpf.pdb
-C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\Player1View.g.cs
-C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\Player2View.g.cs
-C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\Player1View.baml
-C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\Player2View.baml
 C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\UncontrolledView.g.cs
 C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\UncontrolledView.baml
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\PlayerView.g.cs
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\PlayerView.baml

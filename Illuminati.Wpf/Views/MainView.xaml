@@ -13,7 +13,7 @@
              d:DesignHeight="600" d:DesignWidth="920">
     <Grid>
         <StackPanel Width="120" Panel.ZIndex="1">
-            <ComboBox x:Name="SPlayers" ItemsSource="{Binding Players}" SelectedIndex="{Binding SelectedPlayerIndex}" SelectedItem="{Binding PlayerView}"/>
+            <ComboBox x:Name="SPlayers" ItemsSource="{Binding Players}" SelectedIndex="{Binding SelectedPlayerIndex}" SelectedItem="{Binding PlayersView}"/>
         </StackPanel>
         <TextBlock Height ="20" Text="{Binding ActionCount, StringFormat='Actions left: {0}'}" Panel.ZIndex="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20,6,20,0" />
 
@@ -53,10 +53,10 @@
         <ListBox Width="460" Height="100" Background="#00000000" BorderBrush="Black"  ItemsSource="{Binding Messages}" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Black">
         </ListBox>
 
-            <UserControl Name="PlayerViews" Content="{Binding PlayerView}">
+            <UserControl Name="PlayerViews" Content="{Binding PlayersView}">
             <UserControl.Resources>
-                <DataTemplate DataType="{x:Type viewmodels:Player1ViewModel}">
-                    <local:Player1View/>
+                <DataTemplate DataType="{x:Type viewmodels:PlayerViewModel}">
+                    <local:PlayerView/>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type viewmodels:UncontrolledViewModel}">
                     <local:UncontrolledView/>

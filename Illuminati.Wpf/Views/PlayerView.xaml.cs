@@ -8,13 +8,13 @@ using System.Windows.Controls;
 namespace Illuminati.Wpf.Views
 {
     /// <summary>
-    /// Interaction logic for Player1View.xaml
+    /// Interaction logic for PlayerView.xaml
     /// </summary>
     [MvxContentPresentation]
-    [MvxViewFor(typeof(Player1ViewModel))]
-    public partial class Player1View : MvxWpfView
+    [MvxViewFor(typeof(PlayerViewModel))]
+    public partial class PlayerView : MvxWpfView
     {
-        public Player1View()
+        public PlayerView()
         {
             InitializeComponent();
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Illuminati.Core.ViewModels
 {
-    public class Player1ViewModel : GroupViewModel
+    public class PlayerViewModel : GroupViewModel
     {
         public IMvxCommand DeleteSelectedCardCommand { get; set; }
         public IMvxCommand AddSelectedCardCommand { get; set; }
@@ -18,16 +18,16 @@ namespace Illuminati.Core.ViewModels
         public IMvxCommand ConfirmCommand { get; set; }
         public IMvxCommand CancelCommand { get; set; }
 
-        private string p1Name = "Player1";
-        public string P1Name
+        private string pName;
+        public string PName
         {
-            get { return p1Name; }
-            set { SetProperty(ref p1Name, value); }
+            get { return pName; }
+            set { SetProperty(ref pName, value); }
         }
 
-        public Player1ViewModel(Deck d)
+        public PlayerViewModel(Deck d)
         {
-            int length = 9;
+            int length = 15;
             int middle = (int)Math.Round((double)length / 2);
 
             for (int x = 0; x < length; x++)
@@ -100,7 +100,7 @@ namespace Illuminati.Core.ViewModels
 
         public override string ToString()
         {
-            return p1Name;
+            return pName;
         }
     }
 }

@@ -10,8 +10,8 @@ namespace Illuminati.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        public Player1ViewModel p1; 
-        public Player1ViewModel p2; 
+        public PlayerViewModel p1; 
+        public PlayerViewModel p2; 
         public UncontrolledViewModel uncontrolled = new UncontrolledViewModel();
         public Deck d = new Deck();
         Random rnd = new Random();
@@ -41,11 +41,11 @@ namespace Illuminati.Core.ViewModels
             set { SetProperty(ref firstName, value); }
         }
 
-        private MvxViewModel playerView;
-        public MvxViewModel PlayerView
+        private MvxViewModel playersView;
+        public MvxViewModel PlayersView
         {
-            get { return playerView; }
-            set { SetProperty(ref playerView, value);
+            get { return playersView; }
+            set { SetProperty(ref playersView, value);
                 RaisePropertyChanged(() => CurrentView);
             }
         }
@@ -54,7 +54,7 @@ namespace Illuminati.Core.ViewModels
         public MvxViewModel CurrentView
         {
             get { return currentView; }
-            set { SetProperty(ref currentView, PlayerView);
+            set { SetProperty(ref currentView, PlayersView);
             }
         }
 
@@ -170,12 +170,14 @@ namespace Illuminati.Core.ViewModels
         {
             d.ShuffleDeck();
             d.ShuffleIDeck();
-            p1 = new Player1ViewModel(d);
-            p2 = new Player1ViewModel(d);
+            p1 = new PlayerViewModel(d);
+            p1.PName = "Player 1";
+            p2 = new PlayerViewModel(d);
+            p2.PName = "Player 2";
             Players.Add(p1);
             Players.Add(p2);
             SelectedPlayerIndex = rnd.Next(Players.Count);
-            PlayerView = Players[SelectedPlayerIndex];
+            PlayersView = Players[SelectedPlayerIndex];
             Players.Add(uncontrolled);
             uncontrolled.BoardGrid.Add(d.DrawCard());
             uncontrolled.BoardGrid.Add(d.DrawCard());
@@ -240,7 +242,7 @@ namespace Illuminati.Core.ViewModels
                     Players[SelectedPlayerIndex].Selection = -1;
 
                     SelectionEnabled = "Collapsed";
-                    PlayerView = SelectionPlay;
+                    PlayersView = SelectionPlay;
                     SelectedPlayerIndex = Players.IndexOf(SelectionPlay);
 
                     SendMessage("Select group to attack");
@@ -262,7 +264,7 @@ namespace Illuminati.Core.ViewModels
                             sliderOff();
                             int sValue = SliderValue;
 
-                            PlayerView = Players[Ap];
+                            PlayersView = Players[Ap];
                             SelectedPlayerIndex = Ap;
 
                             int roll = rnd.Next(13);
@@ -342,7 +344,7 @@ namespace Illuminati.Core.ViewModels
                     Players[SelectedPlayerIndex].Selection = -1;
 
                     SelectionEnabled = "Collapsed";
-                    PlayerView = SelectionPlay;
+                    PlayersView = SelectionPlay;
                     SelectedPlayerIndex = Players.IndexOf(SelectionPlay);
 
                     SendMessage("Select group to attack");
@@ -364,7 +366,7 @@ namespace Illuminati.Core.ViewModels
                             sliderOff();
                             int sValue = SliderValue;
 
-                            PlayerView = Players[Ap];
+                            PlayersView = Players[Ap];
                             SelectedPlayerIndex = Ap;
 
                             int roll = rnd.Next(13);
@@ -445,7 +447,7 @@ namespace Illuminati.Core.ViewModels
                     Players[SelectedPlayerIndex].Selection = -1;
 
                     SelectionEnabled = "Collapsed";
-                    PlayerView = SelectionPlay;
+                    PlayersView = SelectionPlay;
                     SelectedPlayerIndex = Players.IndexOf(SelectionPlay);
 
                     SendMessage("Select group to attack");
@@ -467,7 +469,7 @@ namespace Illuminati.Core.ViewModels
                             sliderOff();
                             int sValue = SliderValue;
 
-                            PlayerView = Players[Ap];
+                            PlayersView = Players[Ap];
                             SelectedPlayerIndex = Ap;
 
                             int roll = rnd.Next(13);
@@ -632,7 +634,7 @@ namespace Illuminati.Core.ViewModels
             {
                 SelectedPlayerIndex++;
             }
-            PlayerView = Players[SelectedPlayerIndex % (Players.Count - 1)];
+            PlayersView = Players[SelectedPlayerIndex % (Players.Count - 1)];
             if (SelectedPlayerIndex == Players.Count - 1)
             {
                 SelectedPlayerIndex = 0;
