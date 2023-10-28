@@ -17,6 +17,7 @@ namespace Illuminati.Core.ViewModels
         Random rnd = new Random();
 
         public IMvxCommand AttacktoControlCommand { get; set; }
+        public IMvxCommand MoveGroupCommand { get; set; }
         public IMvxCommand DropGroupCommand { get; set; }
         public IMvxCommand EndTurnCommand { get; set; }
 
@@ -188,6 +189,7 @@ namespace Illuminati.Core.ViewModels
             SliderEnabled = "Collapsed";
             AttacktoControlCommand = new MvxCommand(AttacktoControl);
             DropGroupCommand = new MvxCommand(DropGroup);
+            MoveGroupCommand = new MvxCommand(MoveGroup);
             EndTurnCommand = new MvxCommand(EndTurn);
             StartTurn();
         }
@@ -519,8 +521,57 @@ namespace Illuminati.Core.ViewModels
             }
         }
 
+        public async void TransferMoney()
+        {
+            ButtonEnabled = false;
+            SendMessage("Select group to transfer money from");
+            int Ap = SelectedPlayerIndex;
+            Players[Ap].Selection = -1;
+            await Task.Run(() => Players[Ap].Test());
+
+            if (Players[Ap].Selection == 1)
+            {   
+                Players[Ap].Selection = -1;
+                
+                var temp2 = Players[Ap].SelectedCardIndex;
+                int tbalance = Players[Ap].SelectedCard.Balance;
+
+                SendMessage("Select group to transfer money to");
+                await Task.Run(() => Players[Ap].Test());
+                if (Players[Ap].Selection == 1)
+                {
+                    Players[Ap].Selection = -1;
+
+                    var temp = Players[Ap].SelectedCardIndex;
+                    CardValue = tbalance;
+                    sliderOn();
+                    SendMessage("How much money to transfer to Power?");
+                    await Task.Run(() => Players[Ap].Test());
+                    
+                    if (Players[Ap].Selection == 1)
+                    {
+                        Players[Ap].Selection = -1;
+                        sliderOff();
+                        int sValue = SliderValue;
+                        
+                        Players[Ap].BoardGrid[temp2].RemoveIncome(sValue);
+                        Players[Ap].BoardGrid[temp].AddIncome(sValue);
+                        ActionCount--;
+					}
+                }
+            }
+
+            SelectionPlayers.Clear();
+
+            if (actionCount != 0)
+            {
+                ButtonEnabled = true;
+            }
+        }
+
         public async void MoveGroup()
         {
+            Players[SelectedPlayerIndex].ConCan = "Visible";
             SendMessage("Select group to move");
             Players[SelectedPlayerIndex].OnOffIlluminati();
             await Task.Run(() => Players[SelectedPlayerIndex].Test());
@@ -530,7 +581,9 @@ namespace Illuminati.Core.ViewModels
                 Players[SelectedPlayerIndex].Selection = -1;
 
                 var temp = Players[SelectedPlayerIndex].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex];
+                Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
                 Players[SelectedPlayerIndex].DeleteSelectedCard();
+                Players[SelectedPlayerIndex].OnOffTest();
 
                 SendMessage("Select to place group");
                 if (Players[SelectedPlayerIndex].Selection == 1)
@@ -538,17 +591,18 @@ namespace Illuminati.Core.ViewModels
                     Players[SelectedPlayerIndex].Selection = -1;
 
                     Players[SelectedPlayerIndex].AddSelectCard(temp);
-                    Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
+                    Players[SelectedPlayerIndex].OnOffReverse();
                 }
                 else
                 {
-                    Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
+                    Players[SelectedPlayerIndex].OnOffReverse();
                 }
             }
             else
             {
                 Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
             }
+            Players[SelectedPlayerIndex].ConCan = "Collapsed";
         }
 
         public async void DropGroup()

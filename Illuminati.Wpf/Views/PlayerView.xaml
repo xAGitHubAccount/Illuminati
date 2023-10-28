@@ -13,7 +13,7 @@
              d:DesignHeight="600" d:DesignWidth="920">
 
     <Grid>
-        <Grid Visibility="Visible" DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="2" Margin="0,0,10,75" >
+        <Grid Visibility="{Binding ConCan}" DockPanel.Dock="Right" VerticalAlignment="Bottom" HorizontalAlignment="Right" Panel.ZIndex="2" Margin="0,0,10,75" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="200*"/>
                 <RowDefinition Height="200*"/>

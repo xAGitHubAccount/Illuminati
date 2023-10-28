@@ -76,6 +76,19 @@ namespace Illuminati.Core.ViewModels
             }
         }
 
+        private String conCan;
+        public String ConCan
+        {
+            get
+            {
+                return conCan;
+            }
+            set
+            {
+                SetProperty(ref conCan, value);
+            }
+        }
+
         public void ConfirmClicked()
         {
             Selection = 1;

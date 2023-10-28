@@ -27,7 +27,7 @@ namespace Illuminati.Core.ViewModels
 
         public PlayerViewModel(Deck d)
         {
-            int length = 15;
+            int length = 9;
             int middle = (int)Math.Round((double)length / 2);
 
             for (int x = 0; x < length; x++)
@@ -43,6 +43,7 @@ namespace Illuminati.Core.ViewModels
             }
             Controlling = false;
             Selection = -1;
+            ConCan = "Collapsed";
             TurnRightCommand = new MvxCommand(RotateRightSelectedCard);
             TurnLeftCommand = new MvxCommand(RotateLeftSelectedCard);
             DeleteSelectedCardCommand = new MvxCommand(DeleteSelectedCard);
