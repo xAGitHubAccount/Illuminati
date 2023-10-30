@@ -216,6 +216,7 @@ namespace Illuminati.Core.ViewModels
 
         public async void AttacktoDestroy()
         {
+            Players[SelectedPlayerIndex].ConCan = "Visible";
             ButtonEnabled = false;
             SendMessage("Select group to attack with");
             int Ap = SelectedPlayerIndex;
@@ -269,38 +270,17 @@ namespace Illuminati.Core.ViewModels
                             PlayersView = Players[Ap];
                             SelectedPlayerIndex = Ap;
 
-                            int roll = rnd.Next(13);
-                            if (roll == 11 || roll == 12)
-                            {
-                                SendMessage("Attack unsuccessful");
-                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
-                                ActionCount--;
-                            }
-                            else if (temp2.GetPower() + sValue - temp.GetPower() >= roll)
+                            if (DiceRoll(temp2.GetPower(), temp.GetPower(), sValue))
                             {
                                 SendMessage("Attack successful");
                                 Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
                                 Players[SelectedPlayerIndex].BoardGrid.Remove(temp);
-                                //Players[SelectedPlayerIndex].OnOffTest();
-                                //SendMessage("Select to place group");
-                                //await Task.Run(() => Players[SelectedPlayerIndex].Test());
-
-                                //if (Players[SelectedPlayerIndex].Selection == 1)
-                                //{
-                                //    Players[SelectedPlayerIndex].Selection = -1;
-                                //    Players[SelectedPlayerIndex].AddSelectCard(temp);
-                                //    Players[SelectedPlayerIndex].OnOffReverse();
-                                //    ActionCount--;
-                                //}
-
-                                //else
-                                //{
-                                //    Players[SelectedPlayerIndex].OnOffReverse();
-                                //}
                             }
                             else
                             {
                                 SendMessage("Attack unsuccessful");
+                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
+                                ActionCount--;
                             }
                         }
                     }
@@ -309,6 +289,7 @@ namespace Illuminati.Core.ViewModels
             }
 
             SelectionPlayers.Clear();
+            Players[SelectedPlayerIndex].ConCan = "Collapsed";
 
             if (actionCount != 0)
             {
@@ -318,6 +299,7 @@ namespace Illuminati.Core.ViewModels
 
         public async void AttacktoNeutralize()
         {
+            Players[SelectedPlayerIndex].ConCan = "Visible";
             ButtonEnabled = false;
             SendMessage("Select group to attack with");
             int Ap = SelectedPlayerIndex;
@@ -371,39 +353,18 @@ namespace Illuminati.Core.ViewModels
                             PlayersView = Players[Ap];
                             SelectedPlayerIndex = Ap;
 
-                            int roll = rnd.Next(13);
-                            if (roll == 11 || roll == 12)
-                            {
-                                SendMessage("Attack unsuccessful");
-                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
-                                ActionCount--;
-                            }
-                            else if (temp2.GetPower() + sValue - temp.GetPower() >= roll)
+                            if (DiceRoll(temp2.GetPower(), temp.GetPower(), sValue))
                             {
                                 SendMessage("Attack successful");
                                 Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
                                 Players[SelectedPlayerIndex].BoardGrid.Remove(temp);
                                 uncontrolled.BoardGrid.Add(temp);
-                                //Players[SelectedPlayerIndex].OnOffTest();
-                                //SendMessage("Select to place group");
-                                //await Task.Run(() => Players[SelectedPlayerIndex].Test());
-
-                                //if (Players[SelectedPlayerIndex].Selection == 1)
-                                //{
-                                //    Players[SelectedPlayerIndex].Selection = -1;
-                                //    Players[SelectedPlayerIndex].AddSelectCard(temp);
-                                //    Players[SelectedPlayerIndex].OnOffReverse();
-                                //    ActionCount--;
-                                //}
-
-                                //else
-                                //{
-                                //    Players[SelectedPlayerIndex].OnOffReverse();
-                                //}
                             }
                             else
                             {
                                 SendMessage("Attack unsuccessful");
+                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
+                                ActionCount--;
                             }
                         }
                     }
@@ -412,6 +373,7 @@ namespace Illuminati.Core.ViewModels
             }
 
             SelectionPlayers.Clear();
+            Players[SelectedPlayerIndex].ConCan = "Collapsed";
 
             if (actionCount != 0)
             {
@@ -421,6 +383,7 @@ namespace Illuminati.Core.ViewModels
 
         public async void AttacktoControl()
         {
+            Players[SelectedPlayerIndex].ConCan = "Visible";
             ButtonEnabled = false;
             SendMessage("Select group to attack with");
             int Ap = SelectedPlayerIndex;
@@ -474,14 +437,7 @@ namespace Illuminati.Core.ViewModels
                             PlayersView = Players[Ap];
                             SelectedPlayerIndex = Ap;
 
-                            int roll = rnd.Next(13);
-                            if (roll == 11 || roll == 12)
-                            {
-                                SendMessage("Attack unsuccessful");
-                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
-                                ActionCount--;
-                            }
-                            else if (temp2.GetPower() + sValue - temp.GetPower() >= roll)
+                            if(DiceRoll(temp2.GetPower(),temp.GetPower(), sValue))
                             {
                                 SendMessage("Attack successful");
                                 Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
@@ -506,6 +462,8 @@ namespace Illuminati.Core.ViewModels
                             else
                             {
                                 SendMessage("Attack unsuccessful");
+                                Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
+                                ActionCount--;
                             }
                         }
                     }
@@ -514,6 +472,7 @@ namespace Illuminati.Core.ViewModels
             }
 
             SelectionPlayers.Clear();
+            Players[SelectedPlayerIndex].ConCan = "Collapsed";
 
             if (actionCount != 0)
             {
@@ -523,6 +482,7 @@ namespace Illuminati.Core.ViewModels
 
         public async void TransferMoney()
         {
+            Players[SelectedPlayerIndex].ConCan = "Visible";
             ButtonEnabled = false;
             SendMessage("Select group to transfer money from");
             int Ap = SelectedPlayerIndex;
@@ -560,9 +520,8 @@ namespace Illuminati.Core.ViewModels
 					}
                 }
             }
-
             SelectionPlayers.Clear();
-
+            Players[SelectedPlayerIndex].ConCan = "Collapsed";
             if (actionCount != 0)
             {
                 ButtonEnabled = true;
@@ -607,6 +566,7 @@ namespace Illuminati.Core.ViewModels
 
         public async void DropGroup()
         {
+            Players[SelectedPlayerIndex].ConCan = "Visible";
             SendMessage("Select group to drop");
             Players[SelectedPlayerIndex].OnOffIlluminati();
             await Task.Run(() => Players[SelectedPlayerIndex].Test());
@@ -624,6 +584,7 @@ namespace Illuminati.Core.ViewModels
             {
                 Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
             }
+            Players[SelectedPlayerIndex].ConCan = "Collapsed";
         }
 
         public int Compare(List<Alignments.Alignment> a, List<Alignments.Alignment> b)
