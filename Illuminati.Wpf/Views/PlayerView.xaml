@@ -47,8 +47,8 @@
             <!---<Image Width="120" Height="120" Source="{Binding DisplayCard}" Grid.Row="2">
                 </Image>-->
         </Grid>
-        
-        <ListView ItemsSource="{Binding Path=BoardGrid}" SelectedItem="{Binding SelectedCard}" SelectedIndex="{Binding SelectedCardIndex}" Panel.ZIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+
+		<ListView ItemsSource="{Binding Path=BoardGrid}" SelectedItem="{Binding SelectedCard}" SelectedIndex="{Binding SelectedCardIndex}" IsSynchronizedWithCurrentItem="False" Panel.ZIndex="0" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <Grid HorizontalAlignment="Center" >

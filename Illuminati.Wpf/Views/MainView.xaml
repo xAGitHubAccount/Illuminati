@@ -50,10 +50,10 @@
             <ComboBox x:Name="SPlayer" ItemsSource="{Binding SelectionPlayers}" SelectedItem="{Binding SelectionPlay}" SelectedIndex="0"/>
         </Grid>
 
-        <ListBox Width="460" Height="100" Background="#00000000" BorderBrush="Black"  ItemsSource="{Binding Messages}" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Black">
-        </ListBox>
+		<ListBox Name="listBox" ItemsSource="{Binding Messages}" Width="460" Height="100" Background="#00000000" BorderBrush="Black" Panel.ZIndex="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Black">
+		</ListBox>
 
-            <UserControl Name="PlayerViews" Content="{Binding PlayersView}">
+		<UserControl Name="PlayerViews" Content="{Binding PlayersView}">
             <UserControl.Resources>
                 <DataTemplate DataType="{x:Type viewmodels:PlayerViewModel}">
                     <local:PlayerView/>

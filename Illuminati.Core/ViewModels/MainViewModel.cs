@@ -2,16 +2,19 @@
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Data;
 
 namespace Illuminati.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        public PlayerViewModel p1; 
-        public PlayerViewModel p2; 
+        public PlayerViewModel p1;
+        public PlayerViewModel p2;
         public UncontrolledViewModel uncontrolled = new UncontrolledViewModel();
         public Deck d = new Deck();
         Random rnd = new Random();
@@ -21,7 +24,7 @@ namespace Illuminati.Core.ViewModels
         public IMvxCommand DropGroupCommand { get; set; }
         public IMvxCommand EndTurnCommand { get; set; }
 
-        public MvxObservableCollection<String> messages = new MvxObservableCollection<string>();
+        public MvxObservableCollection<String> messages = new MvxObservableCollection<String>();
         public MvxObservableCollection<String> Messages
         {
             get => messages;
@@ -29,7 +32,7 @@ namespace Illuminati.Core.ViewModels
         }
 
         public MvxObservableCollection<GroupViewModel> players = new MvxObservableCollection<GroupViewModel>();
-        public MvxObservableCollection<GroupViewModel> Players 
+        public MvxObservableCollection<GroupViewModel> Players
         {
             get => players;
             set => SetProperty(ref players, value, () => RaisePropertyChanged(() => CurrentView));
@@ -46,7 +49,9 @@ namespace Illuminati.Core.ViewModels
         public MvxViewModel PlayersView
         {
             get { return playersView; }
-            set { SetProperty(ref playersView, value);
+            set
+            {
+                SetProperty(ref playersView, value);
                 RaisePropertyChanged(() => CurrentView);
             }
         }
@@ -55,7 +60,9 @@ namespace Illuminati.Core.ViewModels
         public MvxViewModel CurrentView
         {
             get { return currentView; }
-            set { SetProperty(ref currentView, PlayersView);
+            set
+            {
+                SetProperty(ref currentView, PlayersView);
             }
         }
 
@@ -73,7 +80,7 @@ namespace Illuminati.Core.ViewModels
         public int ActionCount
         {
             get { return actionCount; }
-            set 
+            set
             {
                 SetProperty(ref actionCount, value);
                 RaisePropertyChanged(() => ButtonEnabled);
@@ -83,13 +90,13 @@ namespace Illuminati.Core.ViewModels
         private bool buttonEnabled;
         public bool ButtonEnabled
         {
-            get 
+            get
             {
                 if (actionCount == 0)
                 {
                     return false;
                 }
-                return buttonEnabled; 
+                return buttonEnabled;
             }
             set
             {
@@ -167,7 +174,7 @@ namespace Illuminati.Core.ViewModels
             SliderEnabled = "Visible";
         }
 
-        public MainViewModel() 
+        public MainViewModel()
         {
             d.ShuffleDeck();
             d.ShuffleIDeck();
@@ -394,7 +401,7 @@ namespace Illuminati.Core.ViewModels
             {
                 var temp2 = Players[SelectedPlayerIndex].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex];
                 Players[SelectedPlayerIndex].Selection = -1;
-                
+
                 for (int x = 0; x < Players.Count - 2; x++)
                 {
                     if (Players[x].Controlling == true)
@@ -437,7 +444,7 @@ namespace Illuminati.Core.ViewModels
                             PlayersView = Players[Ap];
                             SelectedPlayerIndex = Ap;
 
-                            if(DiceRoll(temp2.GetPower(),temp.GetPower(), sValue))
+                            if (DiceRoll(temp2.GetPower(), temp.GetPower(), sValue))
                             {
                                 SendMessage("Attack successful");
                                 Players[Ap].BoardGrid[Players[SelectedPlayerIndex].SelectedCardIndex].RemoveIncome(sValue);
@@ -467,7 +474,7 @@ namespace Illuminati.Core.ViewModels
                             }
                         }
                     }
-                    
+
                 }
             }
 
@@ -490,9 +497,9 @@ namespace Illuminati.Core.ViewModels
             await Task.Run(() => Players[Ap].Test());
 
             if (Players[Ap].Selection == 1)
-            {   
+            {
                 Players[Ap].Selection = -1;
-                
+
                 var temp2 = Players[Ap].SelectedCardIndex;
                 int tbalance = Players[Ap].SelectedCard.Balance;
 
@@ -507,17 +514,17 @@ namespace Illuminati.Core.ViewModels
                     sliderOn();
                     SendMessage("How much money to transfer to Power?");
                     await Task.Run(() => Players[Ap].Test());
-                    
+
                     if (Players[Ap].Selection == 1)
                     {
                         Players[Ap].Selection = -1;
                         sliderOff();
                         int sValue = SliderValue;
-                        
+
                         Players[Ap].BoardGrid[temp2].RemoveIncome(sValue);
                         Players[Ap].BoardGrid[temp].AddIncome(sValue);
                         ActionCount--;
-					}
+                    }
                 }
             }
             SelectionPlayers.Clear();
@@ -580,7 +587,7 @@ namespace Illuminati.Core.ViewModels
                 Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
                 uncontrolled.BoardGrid.Add(temp);
             }
-            else 
+            else
             {
                 Players[SelectedPlayerIndex].OnOffIlluminatiReverse();
             }
@@ -631,7 +638,7 @@ namespace Illuminati.Core.ViewModels
                 return false;
             }
 
-            else if(roll <= total)
+            else if (roll <= total)
             {
                 return true;
             }
