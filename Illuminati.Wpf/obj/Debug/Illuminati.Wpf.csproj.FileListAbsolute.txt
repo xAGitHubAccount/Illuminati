@@ -45,3 +45,9 @@ C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\Uncontroll
 C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\UncontrolledView.baml
 C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\PlayerView.g.cs
 C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\obj\Debug\Views\PlayerView.baml
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\bin\Debug\nunit.framework.dll
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\bin\Debug\nunit.framework.legacy.dll
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\bin\Debug\nunit.framework.xml
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\bin\Debug\nunit.framework.legacy.xml
+C:\Users\iN0va\source\repos\Illuminati\Illuminati.Wpf\bin\Debug\System.Threading.Tasks.Extensions.xml

@@ -201,6 +201,10 @@ namespace Illuminati.Core.ViewModels
             StartTurn();
         }
 
+        public MainViewModel(int i)
+        { 
+        }
+
         public void StartTurn()
         {
             ActionCount = 2;

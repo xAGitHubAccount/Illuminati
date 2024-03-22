@@ -9,11 +9,15 @@ namespace Illuminati.Core.ViewModels
 {
     public class GroupViewModel : MvxViewModel
     {
-        public MvxObservableCollection<GroupCard> _boardGrid = new MvxObservableCollection<GroupCard>();
+        private MvxObservableCollection<GroupCard> _boardGrid = new MvxObservableCollection<GroupCard>();
         public MvxObservableCollection<GroupCard> BoardGrid
         {
             get => _boardGrid;
             set => SetProperty(ref _boardGrid, value, () => RaisePropertyChanged(() => BoardGrid));
+        }
+
+        public GroupViewModel()
+        {
         }
 
         private Card selectedcard;

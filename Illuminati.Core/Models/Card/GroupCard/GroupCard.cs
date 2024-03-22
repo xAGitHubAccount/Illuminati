@@ -99,10 +99,10 @@ namespace Illuminati.Core.Models.Card.GroupCard
 		return income;
 	}
 
-	//public int GetBalance()
-	//{
-	//	return balance;
-	//}
+	public int GetBalance()
+	{
+		return Balance;
+	}
 
 	public void CollectIncome()
 	{
