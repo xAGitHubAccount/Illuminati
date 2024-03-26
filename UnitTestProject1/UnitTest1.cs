@@ -32,7 +32,7 @@ namespace UnitTestProject1
 		}
 
 		[Test]
-		public void TestMethod1()
+		public void TestDiceRoll()
 		{
 			//Arrange
 			bool a = true;
@@ -45,7 +45,7 @@ namespace UnitTestProject1
 		}
 
 		[Test]
-		public void TestMethod2()
+		public void TestDrawCardFromDeck()
 		{
 			//Arrange
 			Deck d = new Deck();
@@ -59,7 +59,7 @@ namespace UnitTestProject1
 		}
 
 		[Test]
-		public void TestMethod3()
+		public void TestAddCardToBoardGrid()
 		{
 			//Arrange
 			base.Setup();
@@ -74,7 +74,7 @@ namespace UnitTestProject1
 		}
 
 		[Test]
-		public void TestMethod4()
+		public void TestCardVisibility()
 		{
 			//Arrange
 			base.Setup();
@@ -90,7 +90,7 @@ namespace UnitTestProject1
 		}
 
 		[Test]
-		public void TestMethod5()
+		public void TestCardVisibilityReverse()
 		{
 			//Arrange
 			base.Setup();
@@ -107,7 +107,7 @@ namespace UnitTestProject1
 		}
 		
 		[Test]
-		public void TestMethod6()
+		public void TestCollectAllIncome()
 		{
 			//Arrange
 			base.Setup();
@@ -122,6 +122,23 @@ namespace UnitTestProject1
 
 			//Assert
 			ClassicAssert.AreEqual(3, gvm.BoardGrid[0].GetBalance());
+		}
+		
+		[Test]
+		public void TestCompare()
+		{
+			//Arrange
+			base.Setup();
+			Airlines a = new Airlines();
+			AlienAbductors ab = new AlienAbductors();
+			MainViewModel gvm = new MainViewModel();
+			int t = 0;
+
+			//Act
+			t = gvm.Compare(a.GetAlignments(), ab.GetAlignments());
+
+			//Assert
+			ClassicAssert.AreEqual(-4, t);
 		}
 	}
 

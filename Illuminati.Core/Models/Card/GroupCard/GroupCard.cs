@@ -10,27 +10,19 @@ namespace Illuminati.Core.Models.Card.GroupCard
 {
 	public class GroupCard : Card
     {
-
 	// Card properties
 	protected int power;
 	protected int tPower;
 	protected int resistance;
-		List<Alignments.Alignment> alignments = new List<Alignments.Alignment>();
-		public int income { get; set; }
-		//protected ArrayList<Alignments> alignments;
+	List<Alignments.Alignment> alignments = new List<Alignments.Alignment>();
+	public int income { get; set; }
+	//protected ArrayList<Alignments> alignments;
 
-		// Attached cards
-		protected GroupCard topCard;
+	// Attached cards
+	protected GroupCard topCard;
 	protected GroupCard rightCard;
 	protected GroupCard bottomCard;
 	protected GroupCard leftCard;
-
-		//protected HashMap<SourceDirection, ArrowDirection> defaultControl;
-		//protected HashMap<SourceDirection, ArrowDirection> control;
-		//protected SourceDirection source = SourceDirection.NONE;
-		//protected ArrowDirection point = ArrowDirection.NONE;
-
-		//Arrow arrows = new Arrow();
 
 	/*
 	 * If card does not have a certain attribute (the card doesn't have a power or resistance
@@ -39,8 +31,7 @@ namespace Illuminati.Core.Models.Card.GroupCard
 	 * group card you made to deck at bottom of Game.java
 	 */
 	public GroupCard(BitmapImage i, int power, int tPower, int resistance, int income, List<Alignments.Alignment> a)
-	{
-		
+	{		
 		ImageSource = i;
 		this.power = power;
 		this.tPower = tPower;
@@ -48,11 +39,8 @@ namespace Illuminati.Core.Models.Card.GroupCard
 		this.income = income;
 		Balance = 0;
 		cType = CardType.Group;
-			alignments = a;
-			//alignments = new ArrayList<Alignments>();
-			//control = new HashMap<SourceDirection, ArrowDirection>();
-			//defaultControl = control;
-		}
+		alignments = a;
+	}
 
 	public void SetPower(int p)
 	{
@@ -73,16 +61,6 @@ namespace Illuminati.Core.Models.Card.GroupCard
 	{
 		this.income = i;
 	}
-
-	//public void addAlignment(Alignments a)
-	//{
-	//	alignments.add(a);
-	//}
-
-	//public void addControl(SourceDirection c, ArrowDirection d)
-	//{
-	//	control.put(c, d);
-	//}
 
 	public int GetPower()
 	{
@@ -114,13 +92,13 @@ namespace Illuminati.Core.Models.Card.GroupCard
 		Balance -= income;
 	}
 
-		public int ReturnRemoveIncome(int x)
-		{
-			Balance -= x;
-			return x;
-		}
+	public int ReturnRemoveIncome(int x)
+	{
+		Balance -= x;
+		return x;
+	}
 
-		public void AddIncome(int x)
+	public void AddIncome(int x)
 	{
 		Balance += x;
 	}
@@ -129,175 +107,11 @@ namespace Illuminati.Core.Models.Card.GroupCard
 	{
 		Balance -= x;
 	}
+	
+	public List<Alignments.Alignment> GetAlignments()
+	{
+		return alignments;
+	}
 
-        //public ArrayList<Alignments> getAlignments()
-        //{
-        //	return alignments;
-        //}
-
-        //public HashMap<SourceDirection, ArrowDirection> getControl()
-        //{
-        //	return control;
-        //}
-
- //       public void attachTop(GroupCard card)
-	//{
-	//	topCard = card;
-	//}
-
-	//public void attachRight(GroupCard card)
-	//{
-	//	rightCard = card;
-	//}
-
-	//public void attachBottom(GroupCard card)
-	//{
-	//	bottomCard = card;
-	//}
-
-	//public void attachLeft(GroupCard card)
-	//{
-	//	leftCard = card;
-	//}
-
-	//public void dettachCards()
-	//{
-	//	topCard = null;
-	//	rightCard = null;
-	//	bottomCard = null;
-	//	leftCard = null;
-
-	//	Iterator Iter = control.entrySet().iterator();
-
-	//	while (Iter.hasNext())
-	//	{
-	//		Map.Entry mapElement = (Map.Entry)Iter.next();
-	//		if (mapElement.getValue().equals(ArrowDirection.NONE))
-	//		{
-	//			control.put((SourceDirection)mapElement.getKey(), ArrowDirection.OUT);
-	//		}
-	//	}
-	//}
-
-	//public void turnClockWise()
-	//{
-	//	HashMap<SourceDirection, ArrowDirection> temp = new HashMap<SourceDirection, ArrowDirection>();
-	//	Iterator Iter = control.entrySet().iterator();
-
-	//	while (Iter.hasNext())
-	//	{
-	//		Map.Entry mapElement = (Map.Entry)Iter.next();
-	//		if (mapElement.getKey().equals(SourceDirection.TOP))
-	//		{
-	//			temp.put(SourceDirection.RIGHT, (ArrowDirection)mapElement.getValue());
-	//		}
-	//		else if (mapElement.getKey().equals(SourceDirection.RIGHT))
-	//		{
-	//			temp.put(SourceDirection.BOTTOM, (ArrowDirection)mapElement.getValue());
-	//		}
-	//		else if (mapElement.getKey().equals(SourceDirection.BOTTOM))
-	//		{
-	//			temp.put(SourceDirection.LEFT, (ArrowDirection)mapElement.getValue());
-	//		}
-	//		else if (mapElement.getKey().equals(SourceDirection.LEFT))
-	//		{
-	//			temp.put(SourceDirection.TOP, (ArrowDirection)mapElement.getValue());
-	//		}
-	//	}
-
-	//	if (temp.size() != 0)
-	//	{
-	//		control = temp;
-	//	}
-	//}
-
-	//public void turnCounterClockWise()
-	//{
-	//	HashMap<SourceDirection, ArrowDirection> temp = new HashMap<SourceDirection, ArrowDirection>();
-	//	Iterator Iter = control.entrySet().iterator();
-
-	//	while (Iter.hasNext())
-	//	{
-	//		Map.Entry mapElement = (Map.Entry)Iter.next();
-	//		if (mapElement.getKey().equals(SourceDirection.TOP))
-	//		{
-	//			temp.put(SourceDirection.LEFT, (ArrowDirection)mapElement.getValue());
-	//		}
-	//		else if (mapElement.getKey().equals(SourceDirection.LEFT))
-	//		{
-	//			temp.put(SourceDirection.BOTTOM, (ArrowDirection)mapElement.getValue());
-	//		}
-	//		else if (mapElement.getKey().equals(SourceDirection.BOTTOM))
-	//		{
-	//			temp.put(SourceDirection.RIGHT, (ArrowDirection)mapElement.getValue());
-	//		}
-	//		else if (mapElement.getKey().equals(SourceDirection.RIGHT))
-	//		{
-	//			temp.put(SourceDirection.TOP, (ArrowDirection)mapElement.getValue());
-	//		}
-	//	}
-
-	//	if (temp.size() != 0)
-	//	{
-	//		control = temp;
-	//	}
-	//}
-
-	//public void turnOneEighty()
-	//{
-	//	HashMap<SourceDirection, ArrowDirection> temp = new HashMap<SourceDirection, ArrowDirection>();
-	//	Iterator Iter = control.entrySet().iterator();
-
-	//	while (Iter.hasNext())
-	//	{
-	//		Map.Entry mapElement = (Map.Entry)Iter.next();
-	//		if (mapElement.getKey().equals(SourceDirection.TOP))
-	//		{
-	//			temp.put(SourceDirection.BOTTOM, (ArrowDirection)mapElement.getValue());
-	//		}
-	//		else if (mapElement.getKey().equals(SourceDirection.RIGHT))
-	//		{
-	//			temp.put(SourceDirection.LEFT, (ArrowDirection)mapElement.getValue());
-	//		}
-	//		else if (mapElement.getKey().equals(SourceDirection.BOTTOM))
-	//		{
-	//			temp.put(SourceDirection.TOP, (ArrowDirection)mapElement.getValue());
-	//		}
-	//		else if (mapElement.getKey().equals(SourceDirection.LEFT))
-	//		{
-	//			temp.put(SourceDirection.RIGHT, (ArrowDirection)mapElement.getValue());
-	//		}
-	//	}
-
-	//	if (temp.size() != 0)
-	//	{
-	//		control = temp;
-	//	}
-	//}
-
-	//public void restoreDefaultControl()
-	//{
-	//	control = defaultControl;
-	//}
-
-	//public GroupCard getTopCard()
-	//{
-	//	return topCard;
-	//}
-
-	//public GroupCard getRightCard()
-	//{
-	//	return rightCard;
-	//}
-
-	//public GroupCard getBottomCard()
-	//{
-	//	return bottomCard;
-	//}
-
-	//public GroupCard getLeftCard()
-	//{
-	//	return leftCard;
-	//}
 	}
 }

@@ -613,14 +613,12 @@ namespace Illuminati.Core.ViewModels
                     if (ali.IsOppositeAlignment(a[x], b[y]))
                     {
                         total -= 4;
-                        b.Remove(b[y]);
-                        break;
+                        
                     }
                     else if (ali.IsSameAlignment(a[x], b[y]))
                     {
                         total += 4;
-                        b.Remove(b[y]);
-                        break;
+                        
                     }
                 }
             }
